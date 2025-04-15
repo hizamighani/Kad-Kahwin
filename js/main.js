@@ -101,10 +101,10 @@ setupCountdown(".campaign-0", new Date().getMilliseconds(), 1924920000000);
  *  Add to Calendar
   ======================================================= */
 const event = {
-    title: "Jemputan Kenduri Kahwin John & Sarah",
-    startDate: "99991231T033000Z", // YYYYMMDDTHHmmssZ (UTC)
-    endDate: "99991231T090000Z",
-    location: "10A Jalan Seri Ampang 2, Kampung Pisang, 47300 Subang, Selangor, Malaysia",
+    title: "Jemputan Majlis Kesyukuran Sambut Menantu - Hizami & Sabrina",
+    startDate: "20250510T110000Z", // YYYYMMDDTHHmmssZ (UTC)
+    endDate: "20250510T160000Z",
+    location: "Maecon D' River Resort, Kampung Beladau Selat, 20050 K. Terengganu, Terengganu, Malaysia",
     description: "Kami menjemput tuan/puan hadir ke majlis perkahwinan anakanda kami.",
 };
 
@@ -172,16 +172,16 @@ function addAppleCalendar() {
  *  Location for Google and Waze
   ======================================================= */
 function openGoogleMaps() {
-    const latitude = 3.1575;  // Example latitude
-    const longitude = 101.7116;  // Example longitude
+    const latitude = 5.276660078791373;  // Example latitude
+    const longitude = 103.0800754701149;  // Example longitude
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=driving`;
 
     window.open(googleMapsUrl, "_blank");  // Open in a new tab
 }
 
 function openWaze() {
-    const latitude = 3.1575;  // Example latitude
-    const longitude = 101.7116;  // Example longitude
+    const latitude = 5.276660078791373;  // Example latitude
+    const longitude = 103.0800754701149;  // Example longitude
     //const wazeUrl = `https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
     const wazeUrl = `waze://?ll=${latitude},${longitude}&navigate=yes`
 
@@ -195,8 +195,8 @@ function openWaze() {
 /** =====================================================
     Contact
   ======================================================= */
-function openWhatsApp(phoneNumber) {
-    const message = "https://kad-jemputan-kahwin.vercel.app/\n\nHello, maaf menggangu. Saya ingin bertanyakan sesuatu berkenaan majlis perkahwinan ini.";
+function openWhatsApp(60134928352) {
+    const message = "https://jemnakkahwin.com/\n\nHello, maaf menggangu. Saya ingin bertanyakan sesuatu berkenaan majlis perkahwinan ini.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");  // Opens WhatsApp in a new tab
 }
