@@ -195,7 +195,7 @@ function openWaze() {
 /** =====================================================
     Contact
   ======================================================= */
-function openWhatsApp(60134928352) {
+function openWhatsApp(phoneNumber) {
     const message = "https://jemnakkahwin.com/\n\nHello, maaf menggangu. Saya ingin bertanyakan sesuatu berkenaan majlis perkahwinan ini.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");  // Opens WhatsApp in a new tab
