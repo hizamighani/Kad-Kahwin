@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-setupCountdown(".campaign-0", new Date().getMilliseconds(), 1924920000000);
-
+const weddingDate = new Date("2025-05-10T11:00:00+08:00").getTime(); // local time
+setupCountdown(".campaign-0", Date.now(), weddingDate);
 
 
 
