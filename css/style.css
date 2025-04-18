@@ -1,5 +1,5 @@
 /* Import */
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cormorant+Garamond&display=swap');
 
 /* General Global Setting */
 * {
@@ -9,13 +9,12 @@
 }
 
 body {
-    position: relative;
-    /*background: linear-gradient(to right, #24243e, #302b63, #0f0c29);*/
-    background: #F8F4FF;
-    font-family: "Roboto", sans-serif;
-    width: 100%;
-    height: 100%;
+    font-family: 'Cormorant Garamond', serif;
+    background: url('../images/terengganu-batik.jpg') repeat fixed;
+    background-size: cover;
+    color: #f6d776;
 }
+
 
 /*============================================================================================
     # Wrapper Overlay
@@ -1190,6 +1189,56 @@ section {
     font-weight: 300;
     font-family: 'Cormorant Garamond', serif;
     color: white;
+}
+/* Countdown Box */
+.count-box {
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
+  border-radius: 12px;
+  padding: 10px 20px;
+  text-align: center;
+  color: #FFD700;
+}
+
+.count-box h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+/* Hantar Button (Ucapan) */
+button.hantar {
+  background-color: #FFD700;
+  color: #111;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+button.hantar:hover {
+  background-color: #f6c300;
+  transform: scale(1.05);
+}
+
+/* RSVP Buttons */
+.button button {
+  background-color: #FFD700;
+  color: #111;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin: 8px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button button:hover {
+  background-color: #f6c300;
+  transform: translateY(-2px);
 }
 
 
