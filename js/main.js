@@ -143,13 +143,15 @@ function generateICS(event) {
 
 // Function to download an ICS file
 function downloadICS(filename, content) {
-    const blob = new Blob([content], { type: "text/calendar" });
+    const blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = filename;
     document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    setTimeout(() => {
+        link.click();
+        document.body.removeChild(link);
+    }, 100);
 }
 
 // Handler for Google Calendar button
