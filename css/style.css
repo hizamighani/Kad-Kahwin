@@ -1245,3 +1245,95 @@ button.hantar:hover {
 /*============================================================================================
     # Image Carousel
 ============================================================================================*/
+/* =====================================================
+   🎉 RSVP Form Custom Styling
+   ===================================================== */
+
+#rsvp-form-section {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 40px 20px;
+  margin: 60px auto;
+  border-radius: 16px;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+  color: #f6d776;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+#rsvp-form-section h2.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #FFD700;
+}
+
+#rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#rsvp-form label {
+  font-weight: bold;
+  color: #FFD700;
+  font-size: 18px;
+}
+
+#rsvp-form input[type="text"],
+#rsvp-form input[type="number"],
+#rsvp-form textarea {
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #FFD700;
+  box-shadow: inset 0 0 4px rgba(255, 215, 0, 0.2);
+}
+
+#rsvp-form input:focus,
+#rsvp-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 6px #FFD700;
+}
+
+#rsvp-form textarea {
+  resize: vertical;
+}
+
+#rsvp-form .button {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#rsvp-form .button button {
+  flex: 1;
+  padding: 12px;
+  background-color: #FFD700;
+  color: #111;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+#rsvp-form .button button:hover {
+  background-color: #f6c300;
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  #rsvp-form-section {
+    padding: 30px 15px;
+    margin: 40px 15px;
+  }
+
+  #rsvp-form .button {
+    flex-direction: column;
+  }
+}
