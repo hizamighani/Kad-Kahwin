@@ -282,30 +282,34 @@
             </audio>
         </div>
     </div>
-
-    <section class="rsvp" id="rsvp-form-section">
-        <h2 class="title">RSVP Kehadiran</h2>
-        <form id="rsvp-form">
-            <label for="nama">Nama Anda*</label>
-            <input type="text" id="nama" name="nama" placeholder="Nama manja pun boleh.." required>
-            <label for="telefon">Nombor Telefon</label>
-            <input type="text" id="telefon" name="telefon" placeholder="Contoh: 0123456789">
+    
+    
+    <div id="rsvp-menu" class="toggle-menu">
+        <div class="rsvp-form-wrapper">
+            <h2 class="title">RSVP Kehadiran</h2>
             
-            <div id="if-hadir" style="display: none;">
-                <label for="jumlah">Jumlah Kehadiran</label>
-                <input type="number" id="jumlah" name="jumlah" min="1" max="10" placeholder="Contoh: 2">
-            </div>
-            
-            <label for="ucapan">Ucapan</label>
-            <textarea id="ucapan" name="ucapan" rows="4" placeholder="Semoga bahagia hingga ke Jannah..."></textarea>
-            
-            <div class="button">
-                <button type="button" onclick="submitRSVP('Hadir')">Saya Hadir</button>
-                <button type="button" onclick="submitRSVP('Tidak Hadir')">Tidak Hadir</button>
-            </div>
-        </form>
-    </section>
-
+            <form id="rsvp-form">
+                <label for="nama">Nama Anda*</label>
+                <input type="text" id="nama" name="nama" placeholder="Nama Penuh" required>
+                
+                <label for="telefon">Nombor Telefon</label>
+                <input type="text" id="telefon" name="telefon" placeholder="Contoh: 0123456789">
+                
+                <div id="if-hadir" style="display: none;">
+                    <label for="jumlah">Jumlah Kehadiran</label>
+                    <input type="number" id="jumlah" name="jumlah" min="1" max="10" placeholder="Contoh: 2">
+                </div>
+                
+                <label for="ucapan">Ucapan (Optional)</label>
+                <textarea id="ucapan" name="ucapan" rows="4" placeholder="Semoga bahagia hingga ke Jannah..."></textarea>
+                
+                <div class="button">
+                    <button type="button" onclick="submitRSVP('Hadir')">Saya Hadir</button>
+                    <button type="button" onclick="submitRSVP('Tidak Hadir')">Tidak Hadir</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div id="contact-menu" class="toggle-menu">
         <div class="contact">
