@@ -1337,3 +1337,53 @@ button.hantar:hover {
     flex-direction: column;
   }
 }
+
+/* RSVP Form inside popup (menu style) */
+#rsvp-menu .rsvp-form-wrapper {
+  padding: 30px 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#rsvp-menu form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#rsvp-menu label {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+#rsvp-menu input,
+#rsvp-menu textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #FFD700;
+}
+
+#rsvp-menu .button {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#rsvp-menu .button button {
+  flex: 1;
+  background-color: #FFD700;
+  color: #111;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+#rsvp-menu .button button:hover {
+  background-color: #f6c300;
+  transform: scale(1.03);
+}
