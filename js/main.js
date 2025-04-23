@@ -462,9 +462,47 @@ document.getElementById("btn-tidak-hadir").onclick = function() {
 };
 
 
-
-
-
 /** =====================================================
  *  Image Carousel
   ======================================================= */
+
+
+function submitRSVP(status) {
+  const data = {
+    nama: document.getElementById("nama").value,
+    telefon: document.getElementById("telefon").value,
+    status: status,
+    jumlah: status === "Hadir" ? document.getElementById("jumlah").value : "",
+    ucapan: document.getElementById("ucapan").value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbxQaP21XhSr02c8X62ziIr9hNPupAIjFmb6SwNgunTjMLxjciuWCC2xfJlGblGtfG9v/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(res => {
+    if (res.success) {
+      alert("Terima kasih! Maklumat anda telah dihantar.");
+      document.getElementById("rsvp-form").reset();
+      document.getElementById("if-hadir").style.display = "none";
+    } else {
+      alert("Ada masalah, cuba lagi.");
+    }
+  })
+  .catch(err => {
+    console.error("RSVP error", err);
+    alert("Masalah semasa menghantar RSVP.");
+  });
+}
+
+document.querySelector("button[onclick*='Hadir']").addEventListener("click", () => {
+  document.getElementById("if-hadir").style.display = "block";
+});
+
+document.querySelector("button[onclick*='Tidak']").addEventListener("click", () => {
+  document.getElementById("if-hadir").style.display = "none";
+});
