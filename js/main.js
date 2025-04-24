@@ -476,13 +476,25 @@ function submitRSVP(status) {
     ucapan: document.getElementById("ucapan").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbxQaP21XhSr02c8X62ziIr9hNPupAIjFmb6SwNgunTjMLxjciuWCC2xfJlGblGtfG9v/exec", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
+  fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    data: [
+      [
+        data.nama,
+        data.telefon,
+        data.status,
+        data.jumlah || "",
+        data.ucapan || "",
+        new Date().toLocaleString()
+      ]
+    ]
   })
+})
+
   .then(res => res.json())
   .then(res => {
     if (res.success) {
