@@ -371,9 +371,9 @@ const kehadiranBtn = document.getElementById("kehadiran-btn");
 /** =====================================================
  *  Handle Form
   ======================================================= */
-// function submitUcapan() {
-//     document.getElementById("form-ucapan").submit();
-// }
+ function submitUcapan() {
+     document.getElementById("form-ucapan").submit();
+ }
 document.getElementById("form-ucapan").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -521,6 +521,50 @@ document.getElementById("rsvp-form").addEventListener("submit", function (e) {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const rsvpForm = document.getElementById("rsvp-form");
+
+  if (rsvpForm) {
+    rsvpForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const status = document.getElementById("status").value;
+      const nama = document.getElementById("nama").value.trim();
+      const ucapan = document.getElementById("ucapan").value.trim();
+      const telefon = status === "Hadir" ? document.getElementById("telefon").value.trim() : "-";
+      const jumlah = status === "Hadir" ? document.getElementById("jumlah").value.trim() : "-";
+
+      if (!nama) {
+        alert("Sila isi nama.");
+        return;
+      }
+
+      const row = [nama, telefon, status, jumlah, ucapan, new Date().toLocaleString("en-MY")];
+
+      fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: [row] })
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 200) {
+          alert("Terima kasih atas maklumbalas anda!");
+          rsvpForm.reset();
+          resetRSVPForm();
+        } else {
+          alert("Ada masalah, sila cuba semula.");
+        }
+      })
+      .catch(err => {
+        console.error("RSVP Fetch Error:", err);
+        alert("Gagal hantar RSVP.");
+      });
+    });
+  } else {
+    console.warn("⚠️ #rsvp-form not found when script loaded.");
+  }
+});
 
 
 document.querySelector("button[onclick*='Hadir']").addEventListener("click", () => {
