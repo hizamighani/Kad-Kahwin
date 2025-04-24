@@ -465,51 +465,62 @@ document.getElementById("btn-tidak-hadir").onclick = function() {
 /** =====================================================
  *  Image Carousel
   ======================================================= */
+function showRSVPForm(status) {
+  document.getElementById("rsvp-step-choose").style.display = "none";
+  document.getElementById("rsvp-form").style.display = "block";
+  document.getElementById("status").value = status;
+
+  if (status === "Hadir") {
+    document.getElementById("form-hadir-only").style.display = "block";
+  } else {
+    document.getElementById("form-hadir-only").style.display = "none";
+  }
+}
+
+function resetRSVPForm() {
+  document.getElementById("rsvp-step-choose").style.display = "block";
+  document.getElementById("rsvp-form").reset();
+  document.getElementById("rsvp-form").style.display = "none";
+}
 
 
-function submitRSVP(status) {
+document.getElementById("rsvp-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const status = document.getElementById("status").value;
   const nama = document.getElementById("nama").value.trim();
-  const telefon = document.getElementById("telefon").value.trim();
-  const jumlah = document.getElementById("jumlah") ? document.getElementById("jumlah").value.trim() : "";
   const ucapan = document.getElementById("ucapan").value.trim();
+  const telefon = status === "Hadir" ? document.getElementById("telefon").value.trim() : "-";
+  const jumlah = status === "Hadir" ? document.getElementById("jumlah").value.trim() : "-";
 
   if (!nama) {
-    alert("Sila isi nama anda.");
+    alert("Sila isi nama.");
     return;
   }
 
-  const row = [
-    nama,
-    telefon,
-    status,
-    status === "Hadir" ? jumlah : "",
-    ucapan,
-    new Date().toLocaleString("en-MY")
-  ];
+  const row = [nama, telefon, status, jumlah, ucapan, new Date().toLocaleString("en-MY")];
 
   fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: [row] })
   })
   .then(res => res.json())
   .then(res => {
     if (res.status === 200) {
-      alert("RSVP berjaya dihantar. Terima kasih!");
+      alert("Terima kasih atas maklumbalas anda!");
       document.getElementById("rsvp-form").reset();
-      document.getElementById("if-hadir").style.display = "none";
+      resetRSVPForm();
     } else {
-      alert("Gagal hantar RSVP. Sila cuba semula.");
-      console.log("RSVP Error:", res);
+      alert("Ada masalah, sila cuba semula.");
     }
   })
   .catch(err => {
     console.error("RSVP Fetch Error:", err);
-    alert("Ralat semasa menghantar data.");
+    alert("Gagal hantar RSVP.");
   });
-}
+});
+
 
 
 document.querySelector("button[onclick*='Hadir']").addEventListener("click", () => {
