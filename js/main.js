@@ -497,7 +497,15 @@ function showRSVPForm(status) {
       return;
     }
 
-    const row = [nama, telefon, status, jumlah, ucapan, new Date().toLocaleString("en-MY")];
+    const row = [
+        nama || "-",
+        telefon || "-",
+        status || "-",
+        jumlah || "-",
+        ucapan || "-",
+        new Date().toLocaleString("en-MY")
+    ];
+
 
     fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
       method: "POST",
