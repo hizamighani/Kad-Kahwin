@@ -476,7 +476,7 @@ function submitRSVP(status) {
     ucapan: document.getElementById("ucapan").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbxQaP21XhSr02c8X62ziIr9hNPupAIjFmb6SwNgunTjMLxjciuWCC2xfJlGblGtfG9v/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwJVqjbAUE1Yr0qRAhPk16f4xWnCaqWtEnqLL6RrSGMpgb7qV8c73zYvsz8LFvIjxoe/exec", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
