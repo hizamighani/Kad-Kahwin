@@ -476,7 +476,7 @@ function submitRSVP(status) {
     ucapan: document.getElementById("ucapan").value
   };
 
-  fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW", {
+  fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
