@@ -531,12 +531,3 @@ document.addEventListener("DOMContentLoaded", function () {
     console.warn("⚠️ #rsvp-form not found when script loaded.");
   }
 });
-
-
-document.querySelector("button[onclick*='Hadir']").addEventListener("click", () => {
-  document.getElementById("if-hadir").style.display = "block";
-});
-
-document.querySelector("button[onclick*='Tidak']").addEventListener("click", () => {
-  document.getElementById("if-hadir").style.display = "none";
-});
