@@ -535,6 +535,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const telefon = status === "Hadir" ? document.getElementById("telefon").value.trim() : "-";
       const jumlah = status === "Hadir" ? document.getElementById("jumlah").value.trim() : "-";
 
+        alert("Trying to submit RSVP...");
+
       if (!nama) {
         alert("Sila isi nama.");
         return;
