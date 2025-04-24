@@ -1374,10 +1374,11 @@ button.hantar:hover {
 #rsvp-menu .button button {
   flex: 1;
   background-color: #FFD700;
-  color: #111;
+  color: #000;
   font-weight: bold;
   padding: 12px;
-  border-radius: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
   border: none;
   transition: 0.3s;
   box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
@@ -1386,4 +1387,14 @@ button.hantar:hover {
 #rsvp-menu .button button:hover {
   background-color: #f6c300;
   transform: scale(1.03);
+}
+
+#rsvp-form input, #rsvp-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #FFD700;
 }
