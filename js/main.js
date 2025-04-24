@@ -484,14 +484,13 @@ function resetRSVPForm() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const interval = setInterval(() => {
+  const interval = setInterval(() => {
     const rsvpForm = document.getElementById("rsvp-form");
     if (rsvpForm) {
-      clearInterval(interval);
+      clearInterval(interval); // Stop checking once we find the form
 
       rsvpForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        console.log("RSVP form submitted");
+        e.preventDefault(); // Stop the form from reloading the page
 
         const status = document.getElementById("status").value;
         const nama = document.getElementById("nama").value.trim();
@@ -527,6 +526,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
     }
-  }, 300);
+  }, 300); // Check every 300ms until the form is ready
 });
+
 
