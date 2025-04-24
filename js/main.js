@@ -489,8 +489,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (rsvpForm) {
     rsvpForm.addEventListener("submit", function (e) {
-        console.log("RSVP form submitted");
         e.preventDefault();
+        console.log("RSVP form submitted");
 
       const status = document.getElementById("status").value;
       const nama = document.getElementById("nama").value.trim();
