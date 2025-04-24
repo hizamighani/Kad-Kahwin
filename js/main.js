@@ -506,6 +506,7 @@ function showRSVPForm(status) {
         new Date().toLocaleString("en-MY")
     ];
 
+      console.log("Submitting row:", row);
 
     fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
       method: "POST",
