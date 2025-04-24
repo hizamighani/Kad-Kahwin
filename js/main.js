@@ -468,48 +468,49 @@ document.getElementById("btn-tidak-hadir").onclick = function() {
 
 
 function submitRSVP(status) {
-  const data = {
-    nama: document.getElementById("nama").value,
-    telefon: document.getElementById("telefon").value,
-    status: status,
-    jumlah: status === "Hadir" ? document.getElementById("jumlah").value : "",
-    ucapan: document.getElementById("ucapan").value
-  };
+  const nama = document.getElementById("nama").value.trim();
+  const telefon = document.getElementById("telefon").value.trim();
+  const jumlah = document.getElementById("jumlah") ? document.getElementById("jumlah").value.trim() : "";
+  const ucapan = document.getElementById("ucapan").value.trim();
+
+  if (!nama) {
+    alert("Sila isi nama anda.");
+    return;
+  }
+
+  const row = [
+    nama,
+    telefon,
+    status,
+    status === "Hadir" ? jumlah : "",
+    ucapan,
+    new Date().toLocaleString("en-MY")
+  ];
 
   fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    data: [
-      [
-        data.nama,
-        data.telefon,
-        data.status,
-        data.jumlah || "",
-        data.ucapan || "",
-        new Date().toLocaleString()
-      ]
-    ]
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ data: [row] })
   })
-})
-
   .then(res => res.json())
   .then(res => {
-    if (res.success) {
-      alert("Terima kasih! Maklumat anda telah dihantar.");
+    if (res.status === 200) {
+      alert("RSVP berjaya dihantar. Terima kasih!");
       document.getElementById("rsvp-form").reset();
       document.getElementById("if-hadir").style.display = "none";
     } else {
-      alert("Ada masalah, cuba lagi.");
+      alert("Gagal hantar RSVP. Sila cuba semula.");
+      console.log("RSVP Error:", res);
     }
   })
   .catch(err => {
-    console.error("RSVP error", err);
-    alert("Masalah semasa menghantar RSVP.");
+    console.error("RSVP Fetch Error:", err);
+    alert("Ralat semasa menghantar data.");
   });
 }
+
 
 document.querySelector("button[onclick*='Hadir']").addEventListener("click", () => {
   document.getElementById("if-hadir").style.display = "block";
