@@ -466,67 +466,65 @@ document.getElementById("btn-tidak-hadir").onclick = function() {
  *  Image Carousel
   ======================================================= */
 function showRSVPForm(status) {
-  document.getElementById("rsvp-step-choose").style.display = "none";
-  document.getElementById("rsvp-form").style.display = "block";
+  const rsvpForm = document.getElementById("rsvp-form");
+  const hadirFields = document.getElementById("form-hadir-only");
+
+  // Reset form and fill in status
+  document.getElementById("nama").value = "";
+  document.getElementById("telefon").value = "";
+  document.getElementById("jumlah").value = "";
+  document.getElementById("ucapan").value = "";
   document.getElementById("status").value = status;
 
-  if (status === "Hadir") {
-    document.getElementById("form-hadir-only").style.display = "block";
-  } else {
-    document.getElementById("form-hadir-only").style.display = "none";
-  }
+  hadirFields.style.display = status === "Hadir" ? "block" : "none";
+  rsvpForm.style.display = "block";
+
+  // 🛑 Remove old listeners first to avoid stacking
+  const newForm = rsvpForm.cloneNode(true);
+  rsvpForm.parentNode.replaceChild(newForm, rsvpForm);
+
+  newForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("RSVP form submitted!");
+
+    const nama = document.getElementById("nama").value.trim();
+    const ucapan = document.getElementById("ucapan").value.trim();
+    const telefon = status === "Hadir" ? document.getElementById("telefon").value.trim() : "-";
+    const jumlah = status === "Hadir" ? document.getElementById("jumlah").value.trim() : "-";
+
+    if (!nama) {
+      alert("Sila isi nama.");
+      return;
+    }
+
+    const row = [nama, telefon, status, jumlah, ucapan, new Date().toLocaleString("en-MY")];
+
+    fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: [row] })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.status === 200) {
+        alert("Terima kasih atas maklumbalas anda!");
+        newForm.reset();
+        resetRSVPForm();
+      } else {
+        alert("Ada masalah, sila cuba semula.");
+      }
+    })
+    .catch(err => {
+      console.error("RSVP Fetch Error:", err);
+      alert("Gagal hantar RSVP.");
+    });
+  });
 }
+
 
 function resetRSVPForm() {
   document.getElementById("rsvp-step-choose").style.display = "block";
   document.getElementById("rsvp-form").reset();
   document.getElementById("rsvp-form").style.display = "none";
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const interval = setInterval(() => {
-    const rsvpForm = document.getElementById("rsvp-form");
-    if (rsvpForm) {
-      clearInterval(interval); // Stop checking once we find the form
-
-      rsvpForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Stop the form from reloading the page
-
-        const status = document.getElementById("status").value;
-        const nama = document.getElementById("nama").value.trim();
-        const ucapan = document.getElementById("ucapan").value.trim();
-        const telefon = status === "Hadir" ? document.getElementById("telefon").value.trim() : "-";
-        const jumlah = status === "Hadir" ? document.getElementById("jumlah").value.trim() : "-";
-
-        if (!nama) {
-          alert("Sila isi nama.");
-          return;
-        }
-
-        const row = [nama, telefon, status, jumlah, ucapan, new Date().toLocaleString("en-MY")];
-
-        fetch("https://v1.nocodeapi.com/j3mmyy/google_sheets/qfmdwdKbaHtUwOjW?tabId=RSVP", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ data: [row] })
-        })
-        .then(res => res.json())
-        .then(res => {
-          if (res.status === 200) {
-            alert("Terima kasih atas maklumbalas anda!");
-            rsvpForm.reset();
-            resetRSVPForm();
-          } else {
-            alert("Ada masalah, sila cuba semula.");
-          }
-        })
-        .catch(err => {
-          console.error("RSVP Fetch Error:", err);
-          alert("Gagal hantar RSVP.");
-        });
-      });
-    }
-  }, 300); // Check every 300ms until the form is ready
-});
-
 
